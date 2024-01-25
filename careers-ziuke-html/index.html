@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ziuke</title>
+    <link rel="stylesheet" href="index.css" />
+
+    <!-- roboto font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600&family=Roboto:wght@100;300;400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/react-router-dom@5.0.0/umd/react-router-dom.min.js"></script>
+    <!-- data  -->
+    <script src="./data/index.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      //for router
+      const Route = ReactRouterDOM.Route;
+      const Link = ReactRouterDOM.Link;
+
+      // button component
+      const Button = ({ text = "Button" }) => {
+        return <button className="btn-container">{text}</button>;
+      };
+      //layout
+      const Layout = ({ children }) => {
+        return (
+          <>
+            <Navbar />
+            {children}
+          </>
+        );
+      };
+
+      const Navbar = () => {
+        const name = "Mohammed Faris";
+        return (
+          <div className="nav-container">
+            <div className="nav-logo-container">
+              <Link style={{ textDecoration: "none" }} to="/">
+                <h3>ZiUKE</h3>
+              </Link>
+            </div>
+            <div className="nav-links-container">
+              {navLinks.map((navlink) => (
+                <Link key={navlink.id} style={{ textDecoration: "none" }}>
+                  <p>{navlink.name}</p>
+                </Link>
+              ))}
+            </div>
+            <div className="nav-profile-container">
+              <img src="./assets/icons/notification.png" alt="notification" />
+              <div className="nav-profile">
+                <Link style={{ textDecoration: "none" }} to="/post">
+                  <Button text="Post Job" />
+                </Link>
+                <div className="nav-profile-image">
+                  <img src="./assets/images/profile.jpeg" alt="profile" />
+                </div>
+                <p>{name}</p>
+                <img
+                  className="nav-down-icon"
+                  src="./assets/icons/arrow-down.png"
+                />
+              </div>
+            </div>
+          </div>
+        );
+      };
+
+      //jobcard
+      const JobCard = ({
+        id,
+        companyIcon,
+        jobTitle,
+        company,
+        postedBy,
+        desc,
+        tags,
+        days,
+        applicants,
+        location,
+        salary,
+      }) => {
+        return (
+          <div className="jobcard-container" key={id}>
+            <div className="jobcard-header">
+              <div className="company-logo">
+                <img src="./assets/companies-logos/adobe.png" alt="company" />
+              </div>
+              <div className="header-content">
+                <h5>{jobTitle}</h5>
+                <p>
+                  {company} • {location}
+                </p>
+              </div>
+              <img className="save-btn" src="./assets/icons/save.png" alt="" />
+            </div>
+            <p className="jobcard-caption">{desc}</p>
+            <div className="jobcard-tags">
+              {tags.length !== 0 &&
+                tags.map((tag, index) => (
+                  <div key={index}>
+                    <p>{tag}</p>
+                  </div>
+                ))}
+            </div>
+            <p className="jobcard-caption">
+              {days} days ego • {applicants} Applicants
+            </p>
+            <div className="jobcard-bottom">
+              <h3>
+                ${salary}
+                <span>/m</span>
+              </h3>
+              <Button text="Apply Now" />
+            </div>
+          </div>
+        );
+      };
+
+      //joblist
+      const JobList = () => {
+        return (
+          <Layout>
+            <div className="joblist-container">
+              {jobsList.map((job) => (
+                <JobCard key={job.id} {...job} />
+              ))}
+            </div>
+          </Layout>
+        );
+      };
+      // post job
+      const PostJob = () => {
+        const [title, setTitle] = React.useState("");
+        const [company, setCompany] = React.useState("");
+        const [location, setLocation] = React.useState("");
+        const [tags, setTags] = React.useState("");
+        const [salary, setSalary] = React.useState("");
+
+        const handlePost = () => {
+          const formData = {
+            title,
+            company,
+            location,
+            tags,
+            salary,
+          };
+          console.log("form data =====", formData);
+        };
+
+        return (
+          <Layout>
+            <div className="postjob-container">
+              <FormCard onSumbit={handlePost}>
+                <Input
+                  value={title}
+                  setValue={setTitle}
+                  placeholder="Enter job Title..."
+                  title="Enter Title"
+                />
+                <Input
+                  value={company}
+                  setValue={setCompany}
+                  placeholder="Enter company name..."
+                  title="Enter Company"
+                />
+                <Input
+                  value={location}
+                  setValue={setLocation}
+                  placeholder="Enter job location..."
+                  title="Enter Location"
+                />
+                <Input
+                  value={tags}
+                  setValue={setTags}
+                  placeholder="Enter job tags..."
+                  title="Enter Tags"
+                />
+                <Input
+                  value={salary}
+                  setValue={setSalary}
+                  placeholder="Enter salary..."
+                  title="Salary/m"
+                />
+              </FormCard>
+            </div>
+          </Layout>
+        );
+      };
+
+      //form card
+      const FormCard = ({ children, onSumbit }) => {
+        return (
+          <div className="formcard-container">
+            <h2>Post a Job</h2>
+            <p>please enter job details below...</p>
+            {children}
+            <LargeButton onClick={onSumbit} text="Post Job" />
+          </div>
+        );
+      };
+      //large button
+      const LargeButton = ({ text = "Button", ...props }) => {
+        return (
+          <button {...props} className="large-btn-container">
+            {text}
+          </button>
+        );
+      };
+      //input comp
+      const Input = ({ placeholder, title, value, setValue }) => {
+        return (
+          <div className="input-contianer">
+            <label>{title}</label>
+            <input
+              value={value}
+              onChange={(e) => setValue(e.target.value)}
+              placeholder={placeholder}
+            />
+          </div>
+        );
+      };
+
+      const App = () => {
+        return (
+          <ReactRouterDOM.HashRouter>
+            <Route path="/" exact component={JobList} />
+            <Route path="/post" component={PostJob} />
+          </ReactRouterDOM.HashRouter>
+        );
+      };
+
+      const container = document.getElementById("root");
+      const root = ReactDOM.createRoot(container);
+      root.render(<App />);
+    </script>
+  </body>
+</html>

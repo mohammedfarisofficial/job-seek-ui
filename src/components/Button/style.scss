@@ -1,0 +1,15 @@
+.btn-container{
+    padding: 10px 10px;
+    border: none;
+    background-color: #daebff;
+    color: #1179ff;
+    font-weight: 500;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+    margin: 0 10px;
+    &:hover{
+        // color: #1179ff;
+        background-color: transparent;
+    }
+}

@@ -1,0 +1,15 @@
+.large-btn-container {
+  padding: 15px 50px;
+  border: none;
+  background-color: #1179ff;
+  color: #daebff;
+  font-weight: 500;
+  font-size: 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  margin: 2rem 0;
+}
+.large-btn-container:hover {
+  transform: scale(0.95);
+}/*# sourceMappingURL=style.css.map */

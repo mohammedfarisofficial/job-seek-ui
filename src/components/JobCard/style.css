@@ -1,0 +1,93 @@
+.jobcard-container {
+  width: 300px;
+  min-height: 250px;
+  background-color: #fff;
+  margin: 1rem;
+  border-radius: 10px;
+  transition: all 0.1s ease-in;
+  overflow: hidden;
+  border: 1px solid rgba(194, 194, 194, 0.4);
+  padding: 0 1.2rem;
+  cursor: pointer;
+}
+.jobcard-container:hover {
+  box-shadow: 8px 10px 33px -10px rgba(0, 0, 0, 0.67);
+  -webkit-box-shadow: 8px 10px 33px -10px rgba(0, 0, 0, 0.67);
+  -moz-box-shadow: 8px 10px 33px -10px rgba(0, 0, 0, 0.67);
+}
+.jobcard-container .jobcard-caption {
+  font-size: 14px;
+  color: #a4acb0;
+  margin: 0.3rem 0;
+}
+.jobcard-container .jobcard-tags {
+  display: flex;
+  padding: 1rem 0;
+}
+.jobcard-container .jobcard-tags div {
+  padding: 5px 0;
+  margin: 3px;
+  overflow: hidden;
+  border-radius: 20px;
+  border: 1px solid rgba(194, 194, 194, 0.4);
+}
+.jobcard-container .jobcard-tags div p {
+  margin: 0 0.5rem;
+  color: #50595a;
+  font-size: 12px;
+}
+
+.jobcard-header {
+  height: 70px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.jobcard-header .header-content {
+  flex: 2;
+}
+.jobcard-header .header-content h5 {
+  font-size: 14px;
+  color: #2a3334;
+}
+.jobcard-header .header-content p {
+  font-size: 12px;
+  color: #a4acb0;
+}
+.jobcard-header .company-logo {
+  width: 40px;
+  aspect-ratio: 1;
+  overflow: hidden;
+  margin-right: 0.5rem;
+}
+.jobcard-header .company-logo img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.jobcard-header .save-btn {
+  width: 17px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  transition: transform 0.1s ease-in;
+  cursor: pointer;
+}
+.jobcard-header .save-btn:hover {
+  transform: scale(1.05);
+}
+
+.jobcard-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 0;
+}
+.jobcard-bottom h3 {
+  font-weight: 500;
+  color: #1179ff;
+}
+.jobcard-bottom h3 span {
+  color: #a4acb0;
+  font-size: 14px;
+}/*# sourceMappingURL=style.css.map */
